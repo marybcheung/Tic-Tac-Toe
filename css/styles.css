@@ -1,0 +1,48 @@
+.wrapper {
+  text-align: center; }
+
+.grid-container {
+  display: inline-grid;
+  grid-template-columns: auto auto auto; }
+
+.grid-0-0 {
+  border-right: 1px solid black;
+  border-bottom: 1px solid black; }
+
+.grid-0-1 {
+  border-left: 1px solid black;
+  border-bottom: 1px solid black;
+  border-right: 1px solid black; }
+
+.grid-0-2 {
+  border-left: 1px solid black;
+  border-bottom: 1px solid black; }
+
+.grid-1-0 {
+  border-top: 1px solid black;
+  border-right: 1px solid black;
+  border-bottom: 1px solid black; }
+
+.grid-1-1 {
+  border: 1px solid black; }
+
+.grid-1-2 {
+  border-top: 1px solid black;
+  border-left: 1px solid black;
+  border-bottom: 1px solid black; }
+
+.grid-2-0 {
+  border-top: 1px solid black;
+  border-right: 1px solid black; }
+
+.grid-2-1 {
+  border-left: 1px solid black;
+  border-top: 1px solid black;
+  border-right: 1px solid black; }
+
+.grid-2-2 {
+  border-top: 1px solid black;
+  border-left: 1px solid black; }
+
+.grid-item {
+  padding: 20px; }

@@ -1,0 +1,25 @@
+{
+  "name": "tic-tac-toe",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "lite-server",
+    "sass": "node-sass --include-path sass css\\styles.scss css\\styles.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/marybcheung/Tic-Tac-Toe.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/marybcheung/Tic-Tac-Toe/issues"
+  },
+  "homepage": "https://github.com/marybcheung/Tic-Tac-Toe#readme",
+  "devDependencies": {
+    "lite-server": "^2.5.4",
+    "node-sass": "^4.14.1"
+  }
+}
