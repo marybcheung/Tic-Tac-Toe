@@ -1,9 +1,17 @@
-$border: 1px solid black;
+$border: 2px solid grey;
 
 .wrapper {
-  text-align: center;
-}
-
+  text-align: center; 
+  max-height: 400px;
+  min-height: 400px;
+  position: absolute;
+	top:0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+  	
+  margin: auto;}
+  
 .grid-container {
   display: inline-grid;
   grid-template-columns: auto auto auto;
@@ -58,5 +66,14 @@ $border: 1px solid black;
 }
 
 .grid-item {
-  padding: 20px;
+  line-height: 120px;
+  width: 120px;
+  height: 120px }
+
+.grid-item:hover {
+  cursor: pointer;
+}
+
+.grid-item img {
+  vertical-align: middle;
 }
