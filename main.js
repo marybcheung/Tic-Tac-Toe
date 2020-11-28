@@ -1,59 +1,121 @@
+const name = window.prompt("Please enter your name.");
 const spaces = document.querySelectorAll(".grid-item");
 
 const gameBoard = (() => {
   const state = [ [null, null, null],
                   [null, null, null], 
-                  [null, null, null] ];
+                  [null, null, null] ];               
 
-
-  // these two functions should be called every time a player makes a move
-  
-  // takes in a "player" (with private variables like X, O, respective images)
-  // also takes in the indices i.e. x, y
-  function updateState(player, x, y) {
-    console.log("TODO: implement updateState")
+  const _isSpaceTaken = (x, y) => state[x][y] !== null;
+  const _isSpaceRendered = (space) => space.classList.contains("active");
+                  
+  // should take in x, y coordinates instead of className
+  // returns true if valid
+  function updateState(player, coord) {
+    const x = coord.x;
+    const y = coord.y;
+    if (!_isSpaceTaken(x, y)) {
+      state[x][y] = player.piece;
+      return true;
+    }
+    return false;
   }
   
   function render() {
-    console.log("TODO: implement render");
+    for (let i = 0; i<=2; i++) {
+      for (let j = 0; j<=2; j++) {
+        const space = document.querySelector(`.grid-${i}-${j}`);
+        if (_isSpaceTaken(i, j) && !_isSpaceRendered(space)) {
+          while (space.firstChild) {
+            space.removeChild(space.firstChild);
+          }
+          const img = document.createElement("img");
+          img.src = `img/${state[i][j]}.png`;
+          space.classList.add("active");
+          space.appendChild(img);
+        }
+      }
+    }
   }
 
-  return {updateState, render};
+  // returns an array of valid moves where each move is {x, y}
+  function getValidMoves() {
+    let validMoves = [];
+    for (let i = 0; i<=2; i++) {
+      for (let j = 0; j<=2; j++) {
+        if (!_isSpaceTaken(i, j)) {
+          validMoves.push({x:i, y:j});
+        }
+      }
+    }
+    return validMoves;
+  }
+
+  return {updateState, render, getValidMoves};
 })();
 
-// this should be a private helper function for render (use underscore to denote privateness :D)
-function createImg(filename) {
-  const img = document.createElement("img");
-  img.src = filename;
-  return img;
+const cpu = (() => {
+  const piece = "O";
+  const pieceIMG = "img/O.png";
+
+  // should take in a non-empty array
+  function play(validMoves) {
+    return validMoves[Math.floor(Math.random() * validMoves.length)];
+  }
+
+  return {piece, pieceIMG, play};
+})();
+
+function human(name) {
+  const piece = "X";
+  const pieceIMG = "img/X.png";
+
+  function getCoord(className) {
+    const regex = /\d\-\d/;
+    const gridPos = regex.exec(className)[0];
+    const indices = gridPos.split("-");
+    const x = indices[0];
+    const y = indices[1];
+    
+    return {x, y};
+  } 
+
+  return {name, pieceIMG, piece, getCoord};
 }
+
+const player = human(name);
 
 spaces.forEach((space) => {
   space.addEventListener("mouseover", () => {
     if (space.childElementCount == 0) {
-      let img = createImg("img/X-Grey.png");
+      const img = document.createElement("img");
+      img.src = "img/X-Grey.png";
       space.appendChild(img);
     }
   });
 
   space.addEventListener("mouseleave", () => {
     let img = space.childNodes[0];
-    if (!img.classList.contains("active")) {
+    if (!space.classList.contains("active")) {
       space.removeChild(img);
     }
   });
 
+
+
   space.addEventListener("click", () => {
-    // TODO: use regex here to parse the array indices in space.className lol
-    gameBoard.updateState();
+    const coord1 = player.getCoord(space.className);
+    const isValid = gameBoard.updateState(player, coord1);
     gameBoard.render();
 
-    let greyX = space.childNodes[0];
-    space.removeChild(greyX);
-
-    let blueX = createImg("img/X.png");
-    blueX.classList.add("active");
-    space.appendChild(blueX);
-    
+    if (isValid) {
+      // TODO: find a way to delay the cpu move
+      const validMoves = gameBoard.getValidMoves();
+      if (validMoves.length > 0) {
+        const coord2 = cpu.play(validMoves);
+        gameBoard.updateState(cpu, coord2);
+        gameBoard.render();
+      }
+    }
   });
 });
