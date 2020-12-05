@@ -10,7 +10,8 @@ $border: 2px solid grey;
 	left: 0;
 	right: 0;
   	
-  margin: auto;}
+  margin: auto;
+}
   
 .grid-container {
   display: inline-grid;
@@ -65,10 +66,15 @@ $border: 2px solid grey;
   border-left: $border;
 }
 
+.grid-item.active:hover {
+  cursor: auto;
+}
+
 .grid-item {
   line-height: 120px;
   width: 120px;
-  height: 120px }
+  height: 120px 
+}
 
 .grid-item:hover {
   cursor: pointer;

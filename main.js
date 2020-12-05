@@ -2,6 +2,7 @@ const name = window.prompt("Please enter your name.");
 const spaces = document.querySelectorAll(".grid-item");
 const player = human(name);
 
+//TODO: Tuck these callback functions into a displayController
 spaces.forEach((space) => {
   space.addEventListener("mouseover", () => {
     if (space.childElementCount == 0) {
@@ -12,7 +13,7 @@ spaces.forEach((space) => {
   });
 
   space.addEventListener("mouseleave", () => {
-    let img = space.childNodes[0];
+    let img = space.firstChild;
     if (!space.classList.contains("active")) {
       space.removeChild(img);
     }

@@ -57,6 +57,10 @@
   width: 120px;
   height: 120px; }
 
+.grid-item.active:hover {
+  cursor: auto;
+}
+  
 .grid-item:hover {
   cursor: pointer; }
 
