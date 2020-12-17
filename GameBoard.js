@@ -106,13 +106,13 @@ const gameBoard = (() => {
           img.src = `img/${_state[i][j]}.png`;
           space.classList.add("active");
           space.appendChild(img);
-        // the case where something needs to be removed
+        // the case where something needs to be removed or the space was empty to begin with
         } else if (!_isSpaceTaken(i,j)) {
           if (space.firstChild) {
             space.removeChild(space.firstChild);
             space.classList.remove("active");
-            space.style.cursor = 'pointer';
           }
+          space.style.cursor = 'pointer';
         }
       }
     }

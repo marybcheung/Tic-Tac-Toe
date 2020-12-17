@@ -1,5 +1,3 @@
-// TODO: figure out why unused spots have the wrong cursor after resetting
-
 const monitor = props => ({
   setSpaces: (spaces) => {
     props.spaces = spaces;
