@@ -1,10 +1,17 @@
 const name = window.prompt("Please enter your name.");
-const spaces = document.querySelectorAll(".grid-item");
+let spaces = document.querySelectorAll(".grid-item");
 const player = human(name);
 const dispController = displayController(spaces, player);
+const replayBtn = document.querySelector("button");
 
-spaces.forEach((space) => {
-  space.addEventListener("mouseover", dispController.mouseOverSpace(space));
-  space.addEventListener("mouseleave", dispController.mouseLeaveSpace(space));
-  space.addEventListener("click", dispController.clickSpace(space));
+dispController.addEventListeners();
+
+replayBtn.addEventListener("click", () => {
+  gameBoard.reset();
+  spaces = document.querySelectorAll(".grid-item");
+  dispController.setSpaces(spaces);
+  dispController.addEventListeners();
+  const msg = document.querySelector("p");
+  msg.style.display = "none";
+  replayBtn.style.display = "none";
 });
