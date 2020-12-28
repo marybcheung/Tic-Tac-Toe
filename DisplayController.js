@@ -53,7 +53,8 @@ function displayController(spaces, player) {
   }
 
   function _clickSpace(space) {
-    
+
+    //TODO: refactor this function
     return function() {
       const coord1 = player.getCoord(space.className);
       const isValid = gameBoard.updateState(player, coord1);
@@ -67,8 +68,8 @@ function displayController(spaces, player) {
         let validMoves = gameBoard.getValidMoves();
         if (validMoves.length > 0) {
           const coord2 = cpu.play(validMoves);
-          validMoves = gameBoard.getValidMoves();
           gameBoard.updateState(cpu, coord2);
+          validMoves = gameBoard.getValidMoves();
           gameBoard.render();
           if (gameBoard.isWin(coord2)) {
             _displayWin(cpu);
@@ -90,5 +91,14 @@ function displayController(spaces, player) {
     });
   }
 
-  return Object.assign(props, {addEventListeners}, monitor(props));
+  function firstPlay() {
+    if (Math.floor(Math.random()*2)) {
+      const validMoves = gameBoard.getValidMoves();
+      const coord2 = cpu.play(validMoves);
+      gameBoard.updateState(cpu, coord2);
+      gameBoard.render();
+    }
+  }
+
+  return Object.assign(props, {addEventListeners, firstPlay}, monitor(props));
 }

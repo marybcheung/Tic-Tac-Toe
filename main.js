@@ -7,7 +7,7 @@ const msg = document.querySelector("p");
 
 dispController.addEventListeners();
 
-// TODO: randomly choose whether player goes first or not
+dispController.firstPlay();
 
 replayBtn.addEventListener("click", () => {
   gameBoard.reset();
@@ -16,4 +16,5 @@ replayBtn.addEventListener("click", () => {
   dispController.addEventListeners();
   msg.style.display = "none";
   replayBtn.style.display = "none";
+  dispController.firstPlay();
 });
