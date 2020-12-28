@@ -10,7 +10,7 @@ function displayController(spaces, player) {
 
   function _displayWinMsg(winner) {
     const msg = document.querySelector("p");
-    msg.textContent = `${winner.name} won!`;
+    winner ? msg.textContent = `${winner.name} won!` : msg.textContent = "It's a tie!" 
     msg.style.display = 'inherit';
   }
   
@@ -46,33 +46,37 @@ function displayController(spaces, player) {
     }
   }
 
-  function _clickSpace(space) {
+  function _displayWin(winner) {
+    _removeEventListeners();
+    _displayWinMsg(winner);
+    _displayReplayBtn();
+  }
 
-    // TODO: check for tie condition
+  function _clickSpace(space) {
+    
     return function() {
       const coord1 = player.getCoord(space.className);
       const isValid = gameBoard.updateState(player, coord1);
       gameBoard.render();
       if (gameBoard.isWin(coord1)) {
-        console.log("The player won!");
-        _removeEventListeners();
-        _displayWinMsg(player);
-        _displayReplayBtn();
+        _displayWin(player);
         return;
       }
       if (isValid) {
         // TODO: find a way to delay the cpu move
-        const validMoves = gameBoard.getValidMoves();
+        let validMoves = gameBoard.getValidMoves();
         if (validMoves.length > 0) {
           const coord2 = cpu.play(validMoves);
+          validMoves = gameBoard.getValidMoves();
           gameBoard.updateState(cpu, coord2);
           gameBoard.render();
           if (gameBoard.isWin(coord2)) {
-            console.log("The computer won!");
-            _removeEventListeners();
-            _displayWinMsg(cpu);
-            _displayReplayBtn();
+            _displayWin(cpu);
+            return;
           }
+        }
+        if (validMoves.length === 0) {
+          _displayWin(null);
         }
       }
     }
