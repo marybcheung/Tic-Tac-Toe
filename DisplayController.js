@@ -57,26 +57,25 @@ function displayController(spaces, player) {
     //TODO: refactor this function
     return function() {
       const coord1 = player.getCoord(space.className);
-      const isValid = gameBoard.updateState(player, coord1);
+      const isValid = gameBoard.updateState(player.piece, coord1);
       gameBoard.render();
-      if (gameBoard.isWin(coord1)) {
+      if (gameBoard.isWin(coord1, gameBoard.getState())) {
         _displayWin(player);
         return;
       }
       if (isValid) {
         // TODO: find a way to delay the cpu move
-        let validMoves = gameBoard.getValidMoves();
-        if (validMoves.length > 0) {
-          const coord2 = cpu.play(validMoves);
-          gameBoard.updateState(cpu, coord2);
-          validMoves = gameBoard.getValidMoves();
+        let validMoves = gameBoard.getValidMoves(gameBoard.getState());
+        if (gameBoard.isMovesLeft()) {
+          const coord2 = cpu.bestPlay(gameBoard.getState());
+          gameBoard.updateState(cpu.piece, coord2);
           gameBoard.render();
-          if (gameBoard.isWin(coord2)) {
+          if (gameBoard.isWin(coord2, gameBoard.getState())) {
             _displayWin(cpu);
             return;
           }
         }
-        if (validMoves.length === 0) {
+        if (!gameBoard.isMovesLeft()) {
           _displayWin(null);
         }
       }
@@ -93,9 +92,9 @@ function displayController(spaces, player) {
 
   function firstPlay() {
     if (Math.floor(Math.random()*2)) {
-      const validMoves = gameBoard.getValidMoves();
+      const validMoves = gameBoard.getValidMoves(gameBoard.getState());
       const coord2 = cpu.play(validMoves);
-      gameBoard.updateState(cpu, coord2);
+      gameBoard.updateState(cpu.piece, coord2);
       gameBoard.render();
     }
   }

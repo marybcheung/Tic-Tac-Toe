@@ -4,7 +4,7 @@
   "description": "",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha",
     "dev": "lite-server",
     "sass": "node-sass --include-path sass css\\styles.scss css\\styles.css"
   },
@@ -20,6 +20,7 @@
   "homepage": "https://github.com/marybcheung/Tic-Tac-Toe#readme",
   "devDependencies": {
     "lite-server": "^2.5.4",
+    "mocha": "^8.2.1",
     "node-sass": "^4.14.1"
   }
 }
