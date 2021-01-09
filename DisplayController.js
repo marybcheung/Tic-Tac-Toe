@@ -90,15 +90,14 @@ function displayController(spaces, player) {
     });
   }
 
-  function firstPlay() {
-    if (Math.floor(Math.random()*2)) {
-      const validMoves = gameBoard.getValidMoves(gameBoard.getState());
-      // const coord2 = cpu.play(validMoves);
-      const coord2 = {x:0, y:0}
-      gameBoard.updateState(cpu.piece, coord2);
-      gameBoard.render();
-    }
-  }
+  // function firstPlay() {
+  //   if (Math.floor(Math.random()*2)) {
+  //     const validMoves = gameBoard.getValidMoves(gameBoard.getState());
+  //     const coord2 = cpu.play(validMoves);
+  //     gameBoard.updateState(cpu.piece, coord2);
+  //     gameBoard.render();
+  //   }
+  // }
 
-  return Object.assign(props, {addEventListeners, firstPlay}, monitor(props));
+  return Object.assign(props, {addEventListeners}, monitor(props));
 }

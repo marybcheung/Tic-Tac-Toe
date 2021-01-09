@@ -7,7 +7,7 @@ const msg = document.querySelector("p");
 
 dispController.addEventListeners();
 
-dispController.firstPlay();
+// dispController.firstPlay();
 
 replayBtn.addEventListener("click", () => {
   gameBoard.reset();
