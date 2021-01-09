@@ -16,5 +16,5 @@ replayBtn.addEventListener("click", () => {
   dispController.addEventListeners();
   msg.style.display = "none";
   replayBtn.style.display = "none";
-  dispController.firstPlay();
+  // dispController.firstPlay();
 });
