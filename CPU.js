@@ -66,24 +66,23 @@ const cpu = (() => {
   
   }
   
-  // TODO: learn about mini-max algorithm to make the CPU smart
   // should take in a non-empty array, returns the best play
   function bestPlay(state) {
     let bestScore = -Infinity;
-    let bestPlay = null;
+    let play = null;
     let validMoves = gameBoard.getValidMoves(state);
     for (let move of validMoves) {
       let arr = state.slice(0);
       arr[move.x][move.y] = "O";
-      let score = _minimax(arr, true);
+      let score = _minimax(arr, false);
       if (score > bestScore) {
         bestScore = score;
-        bestPlay = move;
+        play = move;
       }
       arr[move.x][move.y] = null;
     }
     // the gameBoard.data is updated with the chosen move outside of this function, should it be updated here? And also in play?
-    return bestPlay;
+    return play;
   }
   
   // returns a random play
@@ -93,5 +92,3 @@ const cpu = (() => {
 
   return {name, piece, pieceIMG, play, bestPlay};
 })();
-
-exports.data = cpu;

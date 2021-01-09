@@ -93,7 +93,8 @@ function displayController(spaces, player) {
   function firstPlay() {
     if (Math.floor(Math.random()*2)) {
       const validMoves = gameBoard.getValidMoves(gameBoard.getState());
-      const coord2 = cpu.play(validMoves);
+      // const coord2 = cpu.play(validMoves);
+      const coord2 = {x:0, y:0}
       gameBoard.updateState(cpu.piece, coord2);
       gameBoard.render();
     }
