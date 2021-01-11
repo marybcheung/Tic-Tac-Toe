@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/marybcheung/Tic-Tac-Toe#readme",
   "devDependencies": {
+    "bootstrap": "^5.0.0-beta1",
     "lite-server": "^2.5.4",
     "mocha": "^8.2.1",
     "node-sass": "^4.14.1"

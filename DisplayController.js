@@ -15,7 +15,7 @@ function displayController(spaces, player) {
   }
   
   function _displayReplayBtn() {
-    const btn = document.querySelector("button");
+    const btn = document.getElementById("replayBtn");
     btn.style.display = 'initial';
   }
   
@@ -65,9 +65,8 @@ function displayController(spaces, player) {
       }
       if (isValid) {
         // TODO: find a way to delay the cpu move
-        let validMoves = gameBoard.getValidMoves(gameBoard.getState());
         if (gameBoard.isMovesLeft()) {
-          const coord2 = cpu.bestPlay(gameBoard.getState());
+          const coord2 = cpu.play(gameBoard.getState());
           gameBoard.updateState(cpu.piece, coord2);
           gameBoard.render();
           if (gameBoard.isWin(coord2, gameBoard.getState())) {

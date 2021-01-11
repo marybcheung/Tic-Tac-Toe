@@ -160,5 +160,3 @@ const gameBoard = (() => {
 
   return {updateState, render, getValidMoves, isWin, reset, isMovesLeft, getState};
 })();
-
-exports = gameBoard;

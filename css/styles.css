@@ -72,3 +72,6 @@
 
 p, button {
   display: none; }
+
+p {
+  margin-top: 10px; }

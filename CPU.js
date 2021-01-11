@@ -2,6 +2,7 @@ const cpu = (() => {
   const piece = "O";
   const pieceIMG = "img/O.png";
   const name = "The computer";
+  let play;
 
   function _isWin(state) {
     for (let i=0; i<=2; i++) {
@@ -67,7 +68,7 @@ const cpu = (() => {
   }
   
   // should take in a non-empty array, returns the best play
-  function bestPlay(state) {
+  function _bestPlay(state) {
     let bestScore = -Infinity;
     let play = null;
     let validMoves = gameBoard.getValidMoves(state);
@@ -86,9 +87,14 @@ const cpu = (() => {
   }
   
   // returns a random play
-  function play(validMoves) {
+  function _dumbPlay(state) {
+    let validMoves = gameBoard.getValidMoves(state);
     return validMoves[Math.floor(Math.random() * validMoves.length)];
   }
 
-  return {name, piece, pieceIMG, play, bestPlay};
+  function setDifficulty(difficulty) {
+    difficulty === "easy"? this.play = _dumbPlay : this.play = _bestPlay;
+  }
+
+  return {name, piece, pieceIMG, setDifficulty, play};
 })();
