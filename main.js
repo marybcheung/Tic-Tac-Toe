@@ -1,21 +1,25 @@
 // const name = window.prompt("Please enter your name.");
 let spaces = document.querySelectorAll(".grid-item");
-let player = null;
-let dispController = null;
+let dispController = displayController(spaces, player);
 const replayBtn = document.getElementById("replayBtn");
-const msg = document.querySelector("p");
+const msg = document.getElementById("winMsg");
 let myModal = new bootstrap.Modal(document.getElementById('modal'));
 let playBtn = document.getElementById("playBtn");
+let optionsBtn = document.getElementById("optionsBtn");
 
-myModal.toggle();
+optionsBtn.addEventListener("click", () => {
+  myModal.toggle();
+});
+
+dispController.addEventListeners();
+cpu.setDifficulty("easy");
 
 playBtn.addEventListener("click", () => {
   const name = document.getElementById("player-name").value;
-  const isEasy = document.querySelector("input[name=cpuDifficulty]:checked").value;
-  cpu.setDifficulty(isEasy);
-  player = human(name);
-  dispController = displayController(spaces, player);
-  dispController.addEventListeners();
+  const difficulty = document.querySelector("input[name=cpuDifficulty]:checked").value;
+  player.setName(name);
+  cpu.setDifficulty(difficulty);
+  dispController.displayOptions();
   myModal.toggle();
 });
 

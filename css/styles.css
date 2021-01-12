@@ -70,8 +70,11 @@
   display: flex;
   justify-content: center; }
 
-p, button {
+.win-wrapper {
+  margin-top: 20px; }
+
+#winMsg, #replayBtn {
   display: none; }
 
 p {
-  margin-top: 10px; }
+  margin-bottom: 0; }

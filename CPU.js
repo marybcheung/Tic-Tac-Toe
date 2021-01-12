@@ -2,6 +2,7 @@ const cpu = (() => {
   const piece = "O";
   const pieceIMG = "img/O.png";
   const name = "The computer";
+  let diff = "easy";
   let play;
 
   function _isWin(state) {
@@ -93,8 +94,14 @@ const cpu = (() => {
   }
 
   function setDifficulty(difficulty) {
-    difficulty === "easy"? this.play = _dumbPlay : this.play = _bestPlay;
+    if (difficulty === "easy") {
+      this.play = _dumbPlay;
+      this.diff = "easy";
+    } else {
+      this.play = _bestPlay;
+      this.diff = "hard";
+    }
   }
 
-  return {name, piece, pieceIMG, setDifficulty, play};
+  return {name, piece, pieceIMG, play, diff, setDifficulty};
 })();

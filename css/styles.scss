@@ -90,9 +90,14 @@ $border: 2px solid grey;
   justify-content: center;
 }
 
-p, button {
-  display: none; }
+.win-wrapper {
+  margin-top: 20px;
+}
 
-p { 
-  margin-top: 10px;
+#winMsg, #replayBtn {
+  display: none; 
+}
+
+p {
+  margin-bottom: 0;
 }

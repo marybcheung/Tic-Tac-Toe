@@ -9,7 +9,7 @@ function displayController(spaces, player) {
 
 
   function _displayWinMsg(winner) {
-    const msg = document.querySelector("p");
+    const msg = document.querySelector("#winMsg");
     winner ? msg.textContent = `${winner.name} won!` : msg.textContent = "It's a tie!" 
     msg.style.display = 'inherit';
   }
@@ -89,14 +89,13 @@ function displayController(spaces, player) {
     });
   }
 
-  // function firstPlay() {
-  //   if (Math.floor(Math.random()*2)) {
-  //     const validMoves = gameBoard.getValidMoves(gameBoard.getState());
-  //     const coord2 = cpu.play(validMoves);
-  //     gameBoard.updateState(cpu.piece, coord2);
-  //     gameBoard.render();
-  //   }
-  // }
+  function displayOptions() {
+    const playerName = document.getElementById("playerName");
+    const difficulty = document.getElementById("cpuDiff");
 
-  return Object.assign(props, {addEventListeners}, monitor(props));
+    playerName.textContent = `Player: ${player.name}`;
+    cpu.diff === "easy" ? difficulty.textContent = `Difficulty: easy` : difficulty.textContent = `Difficulty: hard`;
+  }
+
+  return Object.assign(props, {addEventListeners, displayOptions}, monitor(props));
 }

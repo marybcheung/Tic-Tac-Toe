@@ -20,7 +20,7 @@
             <form>
               <div class="mb-3">
                 <label for="player-name" class="col-form-label">Player name:</label>
-                <input type="text" class="form-control" id="player-name">
+                <input type="text" class="form-control" id="player-name" value="anon">
               </div>
               <div class="mb-3">
                 <label for="player-name" class="col-form-label">CPU difficulty:</label>
@@ -40,10 +40,15 @@
             </form>
           </div>
           <div class="modal-footer">
-            <button id="playBtn" type="button" class="btn btn-primary">Play!</button>
+            <button id="playBtn" type="button" class="btn btn-primary">Save</button>
           </div>
         </div>
       </div>
+    </div>
+    <div class="options-wrapper">
+      <button id="optionsBtn">Options</button>
+      <p id="playerName">Player: anon</p>
+      <p id="cpuDiff">Difficulty: easy</p>
     </div>
     <div class="grid-wrapper">
       <div class="grid-container">
@@ -57,9 +62,11 @@
         <div class="grid-2-1 grid-item"></div>
         <div class="grid-2-2 grid-item"></div>
       </div>
-      <p>Someone won!</p>
-      <div class="button-wrapper">
+      <div class="win-wrapper">
+        <p id="winMsg">Someone won!</p>
+        <div class="button-wrapper">
         <button id="replayBtn">Play Again?</button>
+      </div>
       </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

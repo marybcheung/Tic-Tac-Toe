@@ -1,6 +1,7 @@
-function human(name) {
+const player = (() => {
   const piece = "X";
   const pieceIMG = "img/X.png";
+  const name = "anon";
 
   function getCoord(className) {
     const regex = /\d\-\d/;
@@ -10,7 +11,11 @@ function human(name) {
     const y = indices[1];
     
     return {x, y};
-  } 
+  }
 
-  return {name, pieceIMG, piece, getCoord};
-}
+  function setName(name) {
+    this.name = name;
+  }
+  
+  return {name, pieceIMG, piece, getCoord, setName};
+})();
