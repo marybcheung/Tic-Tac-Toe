@@ -11,9 +11,6 @@ optionsBtn.addEventListener("click", () => {
   myModal.toggle();
 });
 
-dispController.addEventListeners();
-cpu.setDifficulty("easy");
-
 playBtn.addEventListener("click", () => {
   const name = document.getElementById("player-name").value;
   const difficulty = document.querySelector("input[name=cpuDifficulty]:checked").value;
@@ -31,3 +28,6 @@ replayBtn.addEventListener("click", () => {
   msg.style.display = "none";
   replayBtn.style.display = "none";
 });
+
+dispController.addEventListeners();
+cpu.setDifficulty("easy");
