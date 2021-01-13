@@ -90,6 +90,13 @@ $border: 2px solid grey;
   justify-content: center;
 }
 
+.options-display {
+  position: absolute;
+  text-align: right;
+  top: 0;
+  right: 5px;
+}
+
 .win-wrapper {
   margin-top: 20px;
 }
