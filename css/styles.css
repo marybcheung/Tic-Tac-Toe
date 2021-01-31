@@ -82,5 +82,8 @@
 #winMsg, #replayBtn {
   display: none; }
 
+#replayBtn {
+  cursor: pointer; }
+
 p {
   margin-bottom: 0; }
